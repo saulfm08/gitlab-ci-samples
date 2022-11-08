@@ -27,7 +27,7 @@ job1:
     - echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
     - echo "Run another script if $IS_A_FEATURE exists"
   rules:
-    - if: $CI_COMMIT_BRANCH != release
+    - if: $CI_COMMIT_REF_NAME != release
       when: never
 
 job2:
