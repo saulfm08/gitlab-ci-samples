@@ -11,7 +11,7 @@ workflow:
         IS_A_FEATURE: "true"                  # Define a new variable.
     - when: always                            # Run the pipeline in other cases
 
-release:
+job1:
   variables:
     DEPLOY_VARIABLE: "job1-default-deploy"
   rules:
