@@ -9,8 +9,18 @@ workflow:
     - if: $CI_COMMIT_REF_NAME =~ /feature/
       variables:
         IS_A_FEATURE: "true"                  # Define a new variable.
-    - when: always                            # Run the pipeline in other cases
+    - when: always  
 
+job:
+  script: echo "Hello, Rules!"
+  rules:
+    - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^feature/ && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME != $CI_DEFAULT_BRANCH
+      when: never
+    - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^feature/
+      when: manual
+      allow_failure: true
+    - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
+    
 job1:
   variables:
     DEPLOY_VARIABLE: "job1-default-deploy"
