@@ -12,24 +12,7 @@ workflow:
     - when: always  
 
 job:
-  script: echo "Hello, Rules!"
+  script: echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
   rules:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
       when: never
-
-job1:
-  script:
-    - echo "Run script with $DEPLOY_VARIABLE as an argument"
-    - echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
-    - echo "Run another script if $IS_A_FEATURE exists"
-  rules:
-    - if: $CI_COMMIT_REF_NAME != main
-      when: never
-
-job2:
-  script:
-    - echo "Run script with $DEPLOY_VARIABLE as an argument"
-    - echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
-    - echo "Run another script if $IS_A_FEATURE exists"
-  rules:
-    - if: '"$CI_COMMIT_BRANCH" =~ main'  
