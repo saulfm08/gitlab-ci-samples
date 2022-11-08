@@ -10,6 +10,7 @@ Than create:
 - a `release/v[0-9].[0-9].[0-9]` branch like `release/v0.1.0` (based on `main` branch);
 
 - a tag like `v0.1.0` pointing to `main` branch latest commit.
+
 After doing the steps above, go to Pipelines -> CI/CD and see the results.
 
 I strongly recommend you to follow the some guidelines:
