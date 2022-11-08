@@ -15,7 +15,7 @@ release:
   variables:
     DEPLOY_VARIABLE: "job1-default-deploy"
   rules:
-    - if: $CI_COMMIT_BRANCH != release/v[0-9].[0-9].[0-9]
+    - if: $CI_COMMIT_BRANCH != release/v
       when: never
   script:
     - echo "Run script with $DEPLOY_VARIABLE as an argument"
