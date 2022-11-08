@@ -11,8 +11,14 @@ workflow:
         IS_A_FEATURE: "true"                  # Define a new variable.
     - when: always  
 
-job:
+job1:
   script: echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
   rules:
     - if: $CI_COMMIT_REF_NAME =~ 'main'
       when: never
+
+job2:
+  script: echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ 'main'
+      when: always
