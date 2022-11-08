@@ -1,0 +1,30 @@
+variables:
+  DEPLOY_VARIABLE: "default-deploy"
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+      variables:
+        DEPLOY_VARIABLE: "deploy-production"  # Override globally-defined DEPLOY_VARIABLE
+    - if: $CI_COMMIT_REF_NAME =~ /feature/
+      variables:
+        IS_A_FEATURE: "true"                  # Define a new variable.
+    - when: always                            # Run the pipeline in other cases
+
+release:
+  variables:
+    DEPLOY_VARIABLE: "job1-default-deploy"
+  rules:
+    - if: '"$CI_COMMIT_BRANCH" =~ release/v[0-9].[0-9].[0-9]'                    # Run the job in other cases
+  script:
+    - echo "Run script with $DEPLOY_VARIABLE as an argument"
+    - echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
+    - echo "Run another script if $IS_A_FEATURE exists"
+
+job2:
+  script:
+    - echo "Run script with $DEPLOY_VARIABLE as an argument"
+    - echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
+    - echo "Run another script if $IS_A_FEATURE exists"
+  rules:
+    - if: '"$CI_COMMIT_BRANCH" =~ main'  
