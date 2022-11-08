@@ -8,3 +8,11 @@ then
 else
     echo "It does not contains!"
 fi
+
+
+if [[ "$RELEASE" != release/v[0-9].[0-9].[0-9] ]] 
+then
+    echo "It does not contains!"
+else
+    echo "It contains!"
+fi
