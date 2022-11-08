@@ -20,17 +20,15 @@ job:
       when: manual
       allow_failure: true
     - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME
-    
+
 job1:
-  variables:
-    DEPLOY_VARIABLE: "job1-default-deploy"
-  rules:
-    - if: $CI_COMMIT_BRANCH != release
-      when: never
   script:
     - echo "Run script with $DEPLOY_VARIABLE as an argument"
     - echo "$CI_COMMIT_REF_NAME vs $CI_COMMIT_BRANCH"
     - echo "Run another script if $IS_A_FEATURE exists"
+  rules:
+    - if: $CI_COMMIT_BRANCH != release
+      when: never
 
 job2:
   script:
